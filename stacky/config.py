@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import collections
 
 
 class StackyFile:
@@ -65,8 +66,8 @@ def write(obj, path):
         path = os.path.join(path, '.stacky.json')
 
     with open(path, 'w') as f:
-        json.dump({
+        json.dump(collections.OrderedDict({
             'name': obj.name,
             'commands': obj.commands,
             'stack': obj.dependencies
-        }, f)
+        }), f, indent=4)
