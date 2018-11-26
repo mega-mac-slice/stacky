@@ -2,6 +2,9 @@ import os
 import sys
 import json
 import collections
+import logging
+
+logger = logging.getLogger()
 
 
 class StackyFile:
@@ -31,7 +34,7 @@ def read(path):
         path = os.path.join(path, '.stacky.json')
 
     if not exists(path):
-        sys.stderr.write('.stacky.json file: {0} not found.\n'.format(path))
+        logging.error('.stacky.json file: {0} not found.\n'.format(path))
         sys.exit(-1)
 
     config = StackyFile()

@@ -1,11 +1,17 @@
 import os
-import sys
 import argparse
 import collections
+import logging
 
 from stacky import config
 from stacky import iter
 from stacky import commands
+
+logging.basicConfig(
+    format='[%(levelname)s] %(message)s',
+    handlers=[logging.StreamHandler()]
+)
+logger = logging.getLogger()
 
 
 def init_command(args):
@@ -36,6 +42,8 @@ def start_command(args):
     for child in stacky_file_children[::-1]:
         if child.name in seen:
             continue
+
+        logger.info(f'starting | {child.name}')
 
         os.chdir(child.file_dir)
         # If its already running no need to start it.
@@ -81,7 +89,7 @@ def status_command(args):
         lookup[stacky_file.name] = commands.status(stacky_file)
 
     for name, status in lookup.iteritems():
-        print('{0} - {1}'.format(name, status))
+        logging.info('{0} - {1}'.format(name, status))
 
 
 def paths_command(args):
@@ -93,7 +101,7 @@ def paths_command(args):
     unique = set([i.file_dir for i in stacky_file_children])
 
     for file_dir in unique:
-        sys.stdout.write(file_dir)
+        logging.info(file_dir)
 
 
 def main():

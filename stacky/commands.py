@@ -1,6 +1,9 @@
 import sys
 import subprocess
 import time
+import logging
+
+logger = logging.getLogger()
 
 
 def _call_command(command):
@@ -24,7 +27,7 @@ def start(stacky_file):
     success, code = _call_command(command)
 
     if not success:
-        sys.stderr.write('command[start]: {0} failed with code: {1}.'.format(command, code))
+        logger.error('command[start]: {0} failed with code: {1}.'.format(command, code))
 
     return True
 
@@ -37,7 +40,7 @@ def stop(stacky_file):
     success, code = _call_command(command)
 
     if not success:
-        sys.stderr.write('command[stop]: {0} failed with code: {1}.'.format(command, code))
+        logging.error('command[stop]: {0} failed with code: {1}.'.format(command, code))
 
     return True
 
@@ -78,4 +81,4 @@ def git_clone(dependency):
     success, code = _call_command(command)
 
     if not success:
-        sys.stderr.write('git[clone]: {0} failed with code: {1}.'.format(command, code))
+        logging.error('git[clone]: {0} failed with code: {1}.'.format(command, code))

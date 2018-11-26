@@ -1,6 +1,6 @@
 *.pyc
 
 stacky.egg-info
-venv
+.venv
 
 .idea
