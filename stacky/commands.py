@@ -1,4 +1,3 @@
-import sys
 import subprocess
 import time
 import logging
@@ -60,11 +59,11 @@ def status(stacky_file):
     return output
 
 
-def check_status_ok(stacky_file):
+def check_status_ok(stacky_file: 'StackyFile') -> bool:
     return b'ok' in status(stacky_file)
 
 
-def poll_check_status_ok(stacky_file: 'StackyFile', timeout=30):
+def poll_check_status_ok(stacky_file: 'StackyFile', timeout=30) -> bool:
 
     attempts = 0
     while attempts < timeout:
