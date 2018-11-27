@@ -20,16 +20,16 @@ class StackyFile:
             'status': None
         }
 
-        self.dependencies = []
+        self.stack = []
 
 
-def exists(path):
+def exists(path: str) -> bool:
     if not path.endswith('.stacky.json'):
         path = os.path.join(path, '.stacky.json')
     return os.path.exists(path)
 
 
-def read(path):
+def read(path: str) -> 'StackyFile':
     if not path.endswith('.stacky.json'):
         path = os.path.join(path, '.stacky.json')
 
@@ -59,12 +59,12 @@ def read(path):
     stack = obj.get('stack')
     if stack:
         for dependency in stack:
-            config.dependencies.append(dependency)
+            config.stack.append(dependency)
 
     return config
 
 
-def write(obj, path):
+def write(obj: 'StackyFile', path: str):
     if not path.endswith('.stacky.json'):
         path = os.path.join(path, '.stacky.json')
 
@@ -72,5 +72,5 @@ def write(obj, path):
         json.dump(collections.OrderedDict({
             'name': obj.name,
             'commands': obj.commands,
-            'stack': obj.dependencies
+            'stack': obj.stack
         }), f, indent=4)

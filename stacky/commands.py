@@ -3,6 +3,8 @@ import subprocess
 import time
 import logging
 
+from stacky.config import StackyFile
+
 logger = logging.getLogger()
 
 
@@ -59,13 +61,14 @@ def status(stacky_file):
 
 
 def check_status_ok(stacky_file):
-    return status(stacky_file) == 'ok'
+    return b'ok' in status(stacky_file)
 
 
-def poll_check_status_ok(stacky_file, timeout=30):
+def poll_check_status_ok(stacky_file: 'StackyFile', timeout=30):
 
     attempts = 0
     while attempts < timeout:
+        logging.debug(f'polling status | {stacky_file.name}\t {attempts}/{timeout}')
         if check_status_ok(stacky_file):
             return True
 

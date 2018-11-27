@@ -9,7 +9,8 @@ from stacky import commands
 
 logging.basicConfig(
     format='[%(levelname)s] %(message)s',
-    handlers=[logging.StreamHandler()]
+    handlers=[logging.StreamHandler()],
+    level=logging.DEBUG
 )
 logger = logging.getLogger()
 
@@ -45,7 +46,7 @@ def start_command(args):
 
         logger.info(f'starting | {child.name}')
 
-        os.chdir(child.file_dir)
+        os.chdir(child.dir_path)
         # If its already running no need to start it.
         if commands.check_status_ok(child):
             seen.add(child.name)
@@ -88,8 +89,8 @@ def status_command(args):
         os.chdir(stacky_file.dir_path)
         lookup[stacky_file.name] = commands.status(stacky_file)
 
-    for name, status in lookup.iteritems():
-        logging.info('{0} - {1}'.format(name, status))
+    for name, status in lookup.items():
+        logging.info('{0} - {1}'.format(name, status.decode().strip() if status is not None else None))
 
 
 def paths_command(args):

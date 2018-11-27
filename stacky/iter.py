@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 from stacky import dependency
 from stacky import config
@@ -13,7 +14,7 @@ class StackyAccumulator:
 def iterate(stacky_acc, stacky_file):
     os.chdir(stacky_acc.parent_dir)
 
-    for item in stacky_file.dependencies:
+    for item in stacky_file.stack:
         path = dependency.retrieve(item)
         if config.exists(path):
             stacky_file_child = config.read(path)
@@ -21,7 +22,7 @@ def iterate(stacky_acc, stacky_file):
             iterate(stacky_acc, stacky_file_child)
 
 
-def accumulate(parent_dir, stacky_file):
+def accumulate(parent_dir, stacky_file) -> 'StackyAccumulator':
     stacky_acc = StackyAccumulator(parent_dir)
     iterate(stacky_acc, stacky_file)
     return stacky_acc.stacky_files
