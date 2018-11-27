@@ -1,4 +1,5 @@
 import os
+import sys
 import argparse
 import collections
 import logging
@@ -70,6 +71,8 @@ def stop_command(args):
         if child.name in seen:
             continue
 
+        logger.info(f'stopping | {child.name}')
+
         os.chdir(child.file_dir)
         if commands.check_status_ok(child) and commands.stop(child):
             seen.add(child.name)
@@ -99,10 +102,10 @@ def paths_command(args):
     stacky_file_parent = config.read(current_dir)
     stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent)
 
-    unique = set([i.file_dir for i in stacky_file_children])
+    unique = set([i.dir_path for i in stacky_file_children])
 
-    for file_dir in unique:
-        logging.info(file_dir)
+    for dir_path in unique:
+        sys.stdout.write(f'{dir_path}\n')
 
 
 def main():
