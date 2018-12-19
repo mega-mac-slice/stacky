@@ -128,7 +128,10 @@ def main():
     parser.set_defaults(func=paths_command)
 
     args = main_parser.parse_args()
-    args.func(args)
+    try:
+        args.func(args)
+    except AttributeError:
+        main_parser.print_help()
 
 
 if __name__ == '__main__':

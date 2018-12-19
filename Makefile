@@ -4,7 +4,7 @@ venv:
 	@virtualenv -p python3 .venv
 
 install:
-	@source .vstarp2tenv/bin/activate && pip install -e .
+	pip3 install -e .
 
 clean:
 	@rm -r .venv stacky.egg-info
