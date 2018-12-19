@@ -130,7 +130,8 @@ def main():
     args = main_parser.parse_args()
     try:
         args.func(args)
-    except AttributeError:
+    except AttributeError as e:
+        logger.warning(e)
         main_parser.print_help()
 
 
