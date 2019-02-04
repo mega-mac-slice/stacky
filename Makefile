@@ -1,19 +1,13 @@
 .PHONY: clean
 
 venv:
-	@virtualenv -p python3 .venv
+	pipenv install --three
 
 install:
-	pip3 install -e .
+	pipenv install -e .
 
 clean:
-	@rm -r .venv stacky.egg-info
+	@rm -r stacky.egg-info
 
 pep8:
 	@pycodestyle stacky --max-line-length=120
-
-test: pep8
-	source .venv/bin/activate && python -m unittest discover
-
-freeze:
-	source .venv/bin/activate && pip freeze > requirements.txt

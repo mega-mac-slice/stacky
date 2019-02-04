@@ -1,6 +1,7 @@
 *.pyc
 
 stacky.egg-info
-.venv
+Pipfile
+Pipfile.lock
 
 .idea
