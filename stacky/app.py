@@ -73,7 +73,7 @@ def stop_command(args):
 
         logger.info(f'stopping | {child.name}')
 
-        os.chdir(child.file_dir)
+        os.chdir(child.dir_path)
         if commands.check_status_ok(child) and commands.stop(child):
             seen.add(child.name)
 
@@ -93,7 +93,7 @@ def status_command(args):
         lookup[stacky_file.name] = commands.status(stacky_file)
 
     for name, status in lookup.items():
-        logging.info('{0} - {1}'.format(name, status.decode().strip() if status is not None else None))
+        logger.info('{0} - {1}'.format(name, status.decode().strip() if status is not None else None))
 
 
 def paths_command(args):

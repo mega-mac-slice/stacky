@@ -12,7 +12,6 @@ class StackyFile:
         self.dir_path = ''
         self.file_path = ''
 
-        # serde to .stack.json
         self.name = ''
         self.commands = {
             'start': None,

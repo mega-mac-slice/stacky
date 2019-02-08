@@ -67,7 +67,7 @@ def poll_check_status_ok(stacky_file: 'StackyFile', timeout=30) -> bool:
 
     attempts = 0
     while attempts < timeout:
-        logging.debug(f'polling status | {stacky_file.name}\t {attempts}/{timeout}')
+        logger.debug(f'polling status | {stacky_file.name}\t {attempts}/{timeout}')
         if check_status_ok(stacky_file):
             return True
 
@@ -83,4 +83,4 @@ def git_clone(dependency):
     success, code = _call_command(command)
 
     if not success:
-        logging.error('git[clone]: {0} failed with code: {1}.'.format(command, code))
+        logger.error('git[clone]: {0} failed with code: {1}.'.format(command, code))

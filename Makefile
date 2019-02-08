@@ -8,5 +8,5 @@ test:
 
 clean:
 	@pipenv --rm
-	@rm -r stacky.egg-info
+	@rm -rf stacky.egg-info .eggs
 
