@@ -1,5 +1,5 @@
 # stacky
-A basic service management tool for local development.
+A service management tool for local development.
 
 ## Requirements
 - `python 3`

@@ -1,13 +1,12 @@
 .PHONY: clean
 
-venv:
-	pipenv install --three
-
 install:
-	pipenv install -e .
+	@pipenv install --three -e .
+
+test:
+	@pipenv run python setup.py test
 
 clean:
+	@pipenv --rm
 	@rm -r stacky.egg-info
 
-pep8:
-	@pycodestyle stacky --max-line-length=120

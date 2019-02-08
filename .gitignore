@@ -1,6 +1,7 @@
 *.pyc
-
+.eggs
 stacky.egg-info
+
 Pipfile
 Pipfile.lock
 
