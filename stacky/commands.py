@@ -21,7 +21,7 @@ def _check_output_command(command):
 
 
 def start(stacky_file):
-    if not stacky_file.commands or 'start' not in stacky_file.commands:
+    if not stacky_file.commands or not stacky_file.commands.get('start'):
         return False
 
     command = stacky_file.commands.get('start')
@@ -34,7 +34,7 @@ def start(stacky_file):
 
 
 def stop(stacky_file):
-    if not stacky_file.commands or 'stop' not in stacky_file.commands:
+    if not stacky_file.commands or not stacky_file.commands.get('stop'):
         return False
 
     command = stacky_file.commands.get('stop')
@@ -47,7 +47,7 @@ def stop(stacky_file):
 
 
 def status(stacky_file):
-    if not stacky_file.commands or 'status' not in stacky_file.commands:
+    if not stacky_file.commands or not stacky_file.commands.get('status'):
         return None
 
     command = stacky_file.commands.get('status')
