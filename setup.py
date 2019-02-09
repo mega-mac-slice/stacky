@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-from stacky import __version__
 
 setup(
     name='stacky',

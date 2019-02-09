@@ -4,7 +4,7 @@ install:
 	@pipenv install --three -e .[dev]
 
 lint:
-	@pipenv run pycodestyle stacky tests
+	@pipenv run pycodestyle stacky tests setup.py
 
 test: lint
 	@pipenv run tox
