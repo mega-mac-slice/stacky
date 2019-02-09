@@ -1,9 +1,12 @@
 .PHONY: clean dist
 
 install:
-	@pipenv install --three -e .
+	@pipenv install --three -e .[dev]
 
-test:
+lint:
+	@pipenv run pycodestyle stacky tests
+
+test: lint
 	@pipenv run python setup.py test
 
 dist:

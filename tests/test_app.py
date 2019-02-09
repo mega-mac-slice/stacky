@@ -32,5 +32,3 @@ class TestStartCommand(TestCase):
             self.assertTrue(self.read.called)
             self.assertFalse(self.check_status_ok.called)
             self.assertFalse(self.start.called)
-
-

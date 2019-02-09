@@ -17,6 +17,13 @@ setup(
     },
     long_description=open('README.md').read(),
     install_requires=open('requirements.txt').readlines(),
-    tests_require=['mock'],
+    tests_require=[
+        'mock'
+    ],
     test_suite='tests',
+    extras_require={
+        'dev': [
+            'pycodestyle'
+        ]
+    }
 )
