@@ -1,5 +1,7 @@
 test:
   script:
+    - apt-get update -qy
+    - apt-get install -y python-dev python-pip python3.7
     - python setup.py install -e .[dev]
     - tox
     - pycodestyle stacky tests setup.py
