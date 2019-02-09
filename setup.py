@@ -15,6 +15,10 @@ setup(
             'stacky = stacky.app:main'
         ]
     },
+    data_files=[
+        'README.md',
+        'requirements.txt'
+    ],
     long_description=open('README.md').read(),
     install_requires=open('requirements.txt').readlines(),
     tests_require=[
@@ -23,7 +27,8 @@ setup(
     test_suite='tests',
     extras_require={
         'dev': [
-            'pycodestyle'
+            'pycodestyle',
+            'tox'
         ]
     }
 )
