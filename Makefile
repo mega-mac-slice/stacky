@@ -10,7 +10,7 @@ test: lint
 	@pipenv run tox
 
 dist:
-	tar -cvzf dist/stacky.tar.gz stacky/*.py setup.py requirements.txt README.md
+	@pipenv run python setup.py sdist
 
 clean:
 	@pipenv --rm
