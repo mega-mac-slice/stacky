@@ -1,5 +1,7 @@
-# stacky
+# stacky 
 A service management tool for local development.
+
+- [![pipeline status](https://gitlab.com/mega-mac-slice/stacky/badges/master/pipeline.svg)](https://gitlab.com/mega-mac-slice/stacky/commits/master)
 
 ## Requirements
 - `python 3`

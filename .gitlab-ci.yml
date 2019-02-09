@@ -2,6 +2,6 @@ test:
   script:
     - apt-get update -qy
     - apt-get install -y python-dev python-pip
-    - python setup.py install -e .[dev]
-    - tox
-    - pycodestyle stacky tests setup.py
+    - pip install pipenv
+    - make install
+    - make test
