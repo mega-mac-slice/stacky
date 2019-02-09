@@ -9,6 +9,9 @@ lint:
 test: lint
 	@pipenv run tox
 
+bumpversion-patch:
+	@pipenv run bumpversion patch setup.py
+
 dist:
 	@pipenv run python setup.py sdist
 

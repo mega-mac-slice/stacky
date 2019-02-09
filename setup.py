@@ -3,7 +3,7 @@ from stacky import __version__
 
 setup(
     name='stacky',
-    version=__version__,
+    version='0.0.1',
     packages=find_packages(),
     url='https://gitlab.com/mega-mac-slice/stacky',
     license='MIT',
@@ -28,7 +28,8 @@ setup(
     extras_require={
         'dev': [
             'pycodestyle',
-            'tox'
+            'tox',
+            'bumpversion'
         ]
     }
 )
