@@ -7,7 +7,7 @@ HTTP = 'http'
 DIR = 'dir'
 
 
-def parse(dependency):
+def parse(dependency: str) -> (str, str):
     if dependency.startswith('git@'):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return GIT, name
@@ -20,8 +20,10 @@ def parse(dependency):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return DIR, name
 
+    raise ValueError('Could not parse dependency: {0}'.format(dependency))
 
-def retrieve(dependency):
+
+def retrieve(dependency: str) -> str:
     kind, name = parse(dependency)
     path = os.path.join(os.getcwd(), name)
     if os.path.exists(path):
