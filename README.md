@@ -78,11 +78,10 @@ This will iterate through the dependencies and check it's status. Letting you kn
 
 
 ## Command Lifecycle
-### config
 ### install
-### stack
-### setup
 ### start
+### status
+### stop
 
 ## Supported Dependencies
 ### git

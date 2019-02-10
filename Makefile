@@ -13,9 +13,9 @@ bumpversion-patch:
 	@pipenv run bumpversion patch setup.py
 
 dist:
-	@pipenv run python setup.py sdist
+	@pipenv run python setup.py sdist && ls dist/* | xargs -I {} shasum -a 256 {}
 
 clean:
 	@pipenv --rm
-	@rm -rf stacky.egg-info .eggs dist/*
+	@rm -rf stacky.egg-info .eggs .tox
 
