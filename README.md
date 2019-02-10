@@ -78,12 +78,12 @@ This will iterate through the dependencies and check it's status. Letting you kn
 
 
 ## Command Lifecycle
-### install
+### install - TODO
 ### start
 ### status
 ### stop
 
 ## Supported Dependencies
 ### git
-### http/https
-### local
+### local 
+### http/https - TODO
