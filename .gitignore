@@ -1,10 +1,8 @@
 *.pyc
 .eggs
-stacky.egg-info
+*.egg-info
 
-Pipfile
-Pipfile.lock
+Pipfile*
 
 .tox
-
 .idea
