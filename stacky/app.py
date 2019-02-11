@@ -93,7 +93,25 @@ def status_command(args):
         lookup[stacky_file.name] = commands.status(stacky_file)
 
     for name, status in lookup.items():
-        logger.info('{0} - {1}'.format(name, status.decode().strip() if status is not None else None))
+        logger.info('{0} - {1}'.format(name, status.decode().strip() if status is not None else 'skip'))
+
+
+def run_command(args):
+    current_dir, parent_dir = os.getcwd(), os.path.abspath('..')
+
+    stacky_file_parent = config.read(current_dir)
+    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent)
+
+    lookup = collections.OrderedDict()
+    for stacky_file in [stacky_file_parent] + stacky_file_children:
+        if stacky_file.name in lookup:
+            continue
+
+        os.chdir(stacky_file.dir_path)
+        lookup[stacky_file.name] = commands.run(stacky_file, args.command_name)
+
+    for name, result in lookup.items():
+        logger.info('{0} - {1}'.format(name, 'skip' if result is None else ('ok' if result else 'fail')))
 
 
 def paths_command(args):
@@ -123,6 +141,10 @@ def main():
 
     parser = subparsers.add_parser('status', help='status of stack services')
     parser.set_defaults(func=status_command)
+
+    parser = subparsers.add_parser('run', help='run command on all stack services')
+    parser.add_argument('command_name', action='store', type=str)
+    parser.set_defaults(func=run_command)
 
     parser = subparsers.add_parser('paths', help='list local directory paths of dependencies')
     parser.set_defaults(func=paths_command)

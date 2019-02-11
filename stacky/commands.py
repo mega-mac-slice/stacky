@@ -47,7 +47,7 @@ def stop(stacky_file) -> bool:
     return True
 
 
-def status(stacky_file: 'StackyFile') -> typing.Optional[str]:
+def status(stacky_file: 'StackyFile') -> typing.Optional[bytes]:
     if not stacky_file.commands or not stacky_file.commands.get('status'):
         return None
 
@@ -58,6 +58,20 @@ def status(stacky_file: 'StackyFile') -> typing.Optional[str]:
     success, code, output = _check_output_command(command)
 
     return output
+
+
+def run(stacky_file, command_name) -> typing.Optional[bool]:
+    if not stacky_file.commands or not stacky_file.commands.get(command_name):
+        return None
+
+    command = stacky_file.commands.get(command_name)
+    success, code = _call_command(command)
+
+    if not success:
+        logger.error('command[run]: {0} failed with code: {1}.'.format(command, code))
+        return False
+
+    return True
 
 
 def check_status_ok(stacky_file: 'StackyFile') -> bool:
