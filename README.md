@@ -21,7 +21,7 @@ brew tap mega-mac-slice/tap && brew install stacky
 ```
 
 ## Configuration 
-A "Stacky File" is a json file in a project directory typically named _.stack.json_ that looks like:
+A "Stacky File" is a json file in a project directory typically named _.stacky.json_ that looks like:
 ```json
 {
   "name": "dev-application",
