@@ -93,9 +93,15 @@ def poll_check_status_ok(stacky_file: 'StackyFile', timeout=30) -> bool:
 
 
 def git_clone(dependency: str):
-    assert dependency.startswith('git@')
-    command = 'git clone {0}'.format(dependency)
+    is_ssh = dependency.startswith('git@')
+    is_http = dependency.startswith('http') and dependency.endswith('.git')
+
+    if not (is_ssh or is_http):
+        raise ValueError(f'git[clone]: only supports ssh or http and not {dependency}.')
+
+    dependency.startswith('git@')
+    command = f'git clone {dependency}'
     success, code = _call_command(command)
 
     if not success:
-        logger.error('git[clone]: {0} failed with code: {1}.'.format(command, code))
+        logger.error(f'git[clone]: {command} failed with code: {code}.')

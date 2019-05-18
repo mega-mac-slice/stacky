@@ -12,6 +12,10 @@ def parse(dependency: str) -> (str, str):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return GIT, name
 
+    if dependency.startswith('http') and dependency.endswith('.git'):
+        name, _ = os.path.splitext(os.path.basename(dependency))
+        return GIT, name
+
     if dependency.startswith('http'):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return HTTP, name

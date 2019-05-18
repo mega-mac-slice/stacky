@@ -1,0 +1,10 @@
+{
+  "name": "dev-application",
+  "commands": {
+  },
+  "stack": [
+    "https://gitlab.com/mega-mac-slice/dev-postgres.git",
+    "https://gitlab.com/mega-mac-slice/dev-elasticsearch.git",
+    "https://gitlab.com/mega-mac-slice/dev-redis.git"
+  ]
+}
