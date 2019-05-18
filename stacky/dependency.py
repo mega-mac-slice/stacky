@@ -24,7 +24,7 @@ def parse(dependency: str) -> (str, str):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return DIR, name
 
-    raise ValueError('Could not parse dependency: {0}'.format(dependency))
+    raise ValueError(f'Could not parse dependency: {dependency}')
 
 
 def retrieve(dependency: str) -> str:

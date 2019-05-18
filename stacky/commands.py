@@ -29,7 +29,7 @@ def start(stacky_file) -> bool:
     success, code = _call_command(command)
 
     if not success:
-        logger.error('command[start]: {0} failed with code: {1}.'.format(command, code))
+        logger.error(f'command[start]: {command} failed with code: {code}.')
 
     return True
 
@@ -42,7 +42,7 @@ def stop(stacky_file) -> bool:
     success, code = _call_command(command)
 
     if not success:
-        logging.error('command[stop]: {0} failed with code: {1}.'.format(command, code))
+        logging.error(f'command[stop]: {command} failed with code: {code}.')
 
     return True
 
@@ -68,7 +68,7 @@ def run(stacky_file, command_name) -> typing.Optional[bool]:
     success, code = _call_command(command)
 
     if not success:
-        logger.error('command[run]: {0} failed with code: {1}.'.format(command, code))
+        logger.error(f'command[run]: {command} failed with code: {code}.')
         return False
 
     return True

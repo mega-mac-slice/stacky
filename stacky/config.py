@@ -33,7 +33,7 @@ def read(path: str) -> 'StackyFile':
         path = os.path.join(path, '.stacky.json')
 
     if not exists(path):
-        logging.error('.stacky.json file: {0} not found.\n'.format(path))
+        logging.error(f'.stacky.json file: {path} not found.\n')
         sys.exit(-1)
 
     config = StackyFile()
