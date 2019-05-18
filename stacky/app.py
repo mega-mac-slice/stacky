@@ -93,7 +93,7 @@ def status_command(args):
         lookup[stacky_file.name] = commands.status(stacky_file)
 
     for name, status in lookup.items():
-        logger.info('{0} - {1}'.format(name, status.decode().strip() if status is not None else 'skip'))
+        logger.info(f'{name} - {status.decode().strip()}' if status is not None else 'skip')
 
 
 def run_command(args):
@@ -111,7 +111,7 @@ def run_command(args):
         lookup[stacky_file.name] = commands.run(stacky_file, args.command_name)
 
     for name, result in lookup.items():
-        logger.info('{0} - {1}'.format(name, 'skip' if result is None else ('ok' if result else 'fail')))
+        logger.info(f'{name} - {"skip" if result is None else ("ok" if result else "fail")}')
 
 
 def paths_command(args):
