@@ -29,7 +29,8 @@ setup(
         'dev': [
             'pycodestyle',
             'tox',
-            'bumpversion'
+            'bumpversion',
+            'mock'
         ]
     }
 )

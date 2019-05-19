@@ -1,5 +1,7 @@
-from unittest import TestCase
 import mock
+
+from argparse import Namespace
+from unittest import TestCase
 from contextlib import contextmanager
 
 from stacky import app
@@ -27,7 +29,7 @@ class TestStartCommand(TestCase):
     def test_empty_stack_success(self):
         stacky_file = config.StackyFile()
         with self.context(stacky_file):
-            app.start_command(None)
+            app.start_command(Namespace(extra=None))
 
             self.assertTrue(self.read.called)
             self.assertFalse(self.check_status_ok.called)
