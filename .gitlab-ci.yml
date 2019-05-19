@@ -1,6 +1,4 @@
 image: ubuntu:18.04
-services:
-  - docker:dind
 variables:
   LC_ALL: C.UTF-8
   LANG: C.UTF-8
