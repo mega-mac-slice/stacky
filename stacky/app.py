@@ -37,7 +37,7 @@ def start_command(args):
     current_dir, parent_dir = os.getcwd(), os.path.abspath('..')
 
     stacky_file_parent = config.read(current_dir)
-    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent)
+    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent, args.extra)
 
     seen = set()
     # Reverse children so we start dependencies from deepest part of tree.
@@ -63,7 +63,7 @@ def stop_command(args):
     current_dir, parent_dir = os.getcwd(), os.path.abspath('..')
 
     stacky_file_parent = config.read(current_dir)
-    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent)
+    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent, args.extra)
 
     seen = set()
     # Reverse children so we start dependencies from deepest part of tree.
@@ -82,7 +82,7 @@ def status_command(args):
     current_dir, parent_dir = os.getcwd(), os.path.abspath('..')
 
     stacky_file_parent = config.read(current_dir)
-    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent)
+    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent, args.extra)
 
     lookup = collections.OrderedDict()
     for stacky_file in [stacky_file_parent] + stacky_file_children:
@@ -100,7 +100,7 @@ def run_command(args):
     current_dir, parent_dir = os.getcwd(), os.path.abspath('..')
 
     stacky_file_parent = config.read(current_dir)
-    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent)
+    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent, args.extra)
 
     lookup = collections.OrderedDict()
     for stacky_file in [stacky_file_parent] + stacky_file_children:
@@ -118,7 +118,7 @@ def paths_command(args):
     current_dir, parent_dir = os.getcwd(), os.path.abspath('..')
 
     stacky_file_parent = config.read(current_dir)
-    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent)
+    stacky_file_children = iter.accumulate(parent_dir, stacky_file_parent, args.extra)
 
     unique = set([i.dir_path for i in stacky_file_children])
 
@@ -134,19 +134,24 @@ def main():
     parser.set_defaults(func=init_command)
 
     parser = subparsers.add_parser('start', help='start stack services')
+    parser.add_argument('extra', nargs='*', default=None)
     parser.set_defaults(func=start_command)
 
     parser = subparsers.add_parser('stop', help='stop stack services')
+    parser.add_argument('extra', nargs='*', default=None)
     parser.set_defaults(func=stop_command)
 
     parser = subparsers.add_parser('status', help='status of stack services')
+    parser.add_argument('extra', nargs='*', default=None)
     parser.set_defaults(func=status_command)
 
     parser = subparsers.add_parser('run', help='run command on all stack services')
     parser.add_argument('command_name', action='store', type=str)
+    parser.add_argument('extra', nargs='*', default=None)
     parser.set_defaults(func=run_command)
 
     parser = subparsers.add_parser('paths', help='list local directory paths of dependencies')
+    parser.add_argument('extra', nargs='*', default=None)
     parser.set_defaults(func=paths_command)
 
     args = main_parser.parse_args()

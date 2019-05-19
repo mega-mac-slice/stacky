@@ -20,6 +20,7 @@ class StackyFile:
         }
 
         self.stack = []
+        self.extra = {}
 
 
 def exists(path: str) -> bool:
@@ -60,6 +61,11 @@ def read(path: str) -> 'StackyFile':
         for dependency in stack:
             config.stack.append(dependency)
 
+    extra = obj.get('extra')
+    if extra:
+        for key, value in extra.items():
+            config.extra[key] = value
+
     return config
 
 
@@ -71,5 +77,6 @@ def write(obj: 'StackyFile', path: str):
         json.dump(collections.OrderedDict({
             'name': obj.name,
             'commands': obj.commands,
-            'stack': obj.stack
+            'stack': obj.stack,
+            'extra': obj.extra
         }), f, indent=4)

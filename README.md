@@ -33,7 +33,12 @@ A "Stacky File" is a json file in a project directory typically named _.stacky.j
     "git@gitlab.com:mega-mac-slice/dev-postgres.git",
     "git@gitlab.com:mega-mac-slice/dev-redis.git",
     "git@gitlab.com:mega-mac-slice/dev-elasticsearch.git"
-  ]
+  ],
+  "extra": {
+    "kafka": [
+       "git@gitlab.com:mega-mac-slice/dev-fast-data-dev.git"
+    ]
+  }
 }
 ```
 Where we defined some commands for the project itself and also the project's dependencies on postgres, redis and elasticsearch.
@@ -130,7 +135,7 @@ Provides porcelain output of dependency paths intended for usage with external t
 ### stop
 
 ## Supported Dependencies
-### git
+### git ssh/https
 ### local 
 ### http/https - TODO
 

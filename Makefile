@@ -9,6 +9,9 @@ lint:
 test: lint
 	@pipenv run tox
 
+it: install
+	@pushd it && make install && make test && popd
+
 bumpversion-patch:
 	@pipenv run bumpversion patch setup.py
 
@@ -17,5 +20,5 @@ dist:
 
 clean:
 	@pipenv --rm
-	@rm -rf stacky.egg-info .eggs .tox
+	@rm -rf stacky.egg-info .eggs .tox Pipfile*
 
