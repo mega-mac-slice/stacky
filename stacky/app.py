@@ -157,7 +157,7 @@ def main():
     args = main_parser.parse_args()
     if not hasattr(args, 'func'):
         main_parser.print_help()
-        sys.exit(-1)
+        sys.exit()
 
     try:
         args.func(args)
