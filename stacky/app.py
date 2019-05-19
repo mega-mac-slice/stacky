@@ -155,11 +155,14 @@ def main():
     parser.set_defaults(func=paths_command)
 
     args = main_parser.parse_args()
+    if not hasattr(args, 'func'):
+        main_parser.print_help()
+        sys.exit(-1)
+
     try:
         args.func(args)
-    except AttributeError as e:
-        logger.warning(e)
-        main_parser.print_help()
+    except Exception as e:
+        logger.error(e)
 
 
 if __name__ == '__main__':
