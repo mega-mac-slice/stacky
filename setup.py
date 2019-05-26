@@ -31,7 +31,8 @@ setup(
             'pycodestyle',
             'tox',
             'bumpversion',
-            'mock'
+            'mock',
+            'twine'
         ]
     }
 )
