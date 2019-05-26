@@ -10,6 +10,7 @@ setup(
     author='mega-mac-slice',
     author_email='megamacslice@protonmail.com',
     description='A service management tool for local development.',
+    long_description_content_type='text/markdown',
     entry_points={
         'console_scripts': [
             'stacky = stacky.app:main'
