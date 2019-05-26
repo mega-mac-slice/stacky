@@ -136,7 +136,9 @@ Provides porcelain output of dependency paths intended for usage with external t
 
 ## Supported Dependencies
 ### git ssh/https
+- _ssh_ - `git@gitlab.com:mega-mac-slice/dev-postgres.git`
+- _https_ - `https://gitlab.com/mega-mac-slice/dev-postgres.git`
+
 ### local 
-### http/https - TODO
 
 
