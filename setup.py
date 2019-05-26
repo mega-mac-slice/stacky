@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='stacky',
-    version='0.0.3',
+    version='0.0.4',
     packages=find_packages(),
     url='https://gitlab.com/mega-mac-slice/stacky',
     license='MIT',
@@ -20,6 +20,7 @@ setup(
         'requirements.txt'
     ],
     long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     install_requires=open('requirements.txt').readlines(),
     tests_require=[
         'mock'
