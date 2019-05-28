@@ -1,4 +1,4 @@
-# stacky [![pipeline status](https://gitlab.com/mega-mac-slice/stacky/badges/master/pipeline.svg)](https://gitlab.com/mega-mac-slice/stacky/commits/master)
+# stacky [![pipeline status](https://gitlab.com/mega-mac-slice/stacky/badges/master/pipeline.svg)](https://gitlab.com/mega-mac-slice/stacky/commits/master)[![pypi](https://img.shields.io/pypi/v/mms-stacky.svg?maxAge=86400)](https://pypi.org/project/mms-stacky/)
 
 A service management tool for local development.
 
