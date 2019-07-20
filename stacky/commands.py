@@ -13,7 +13,7 @@ def _call_command(command) -> (bool, int):
     return code == 0, code
 
 
-def _check_output_command(command) -> (bool, int, str):
+def _check_output_command(command) -> (bool, int, bytes):
     try:
         output = subprocess.check_output(command, shell=True)
         return True, 0, output
@@ -79,7 +79,6 @@ def check_status_ok(stacky_file: 'StackyFile') -> bool:
 
 
 def poll_check_status_ok(stacky_file: 'StackyFile', timeout=30) -> bool:
-
     attempts = 0
     while attempts < timeout:
         logger.debug(f'polling status | {stacky_file.name}\t {attempts}/{timeout}')
@@ -99,7 +98,6 @@ def git_clone(dependency: str):
     if not (is_ssh or is_http):
         raise ValueError(f'git[clone]: only supports ssh or http and not {dependency}.')
 
-    dependency.startswith('git@')
     command = f'git clone {dependency}'
     success, code = _call_command(command)
 
