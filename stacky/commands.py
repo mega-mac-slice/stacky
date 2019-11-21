@@ -22,36 +22,36 @@ def _check_output_command(command) -> (bool, int, bytes):
 
 
 def start(stacky_file) -> bool:
-    if not stacky_file.commands or not stacky_file.commands.get('start'):
+    if not stacky_file.commands or not stacky_file.commands.get("start"):
         return False
 
-    command = stacky_file.commands.get('start')
+    command = stacky_file.commands.get("start")
     success, code = _call_command(command)
 
     if not success:
-        logger.error(f'command[start]: {command} failed with code: {code}.')
+        logger.error(f"command[start]: {command} failed with code: {code}.")
 
     return True
 
 
 def stop(stacky_file) -> bool:
-    if not stacky_file.commands or not stacky_file.commands.get('stop'):
+    if not stacky_file.commands or not stacky_file.commands.get("stop"):
         return False
 
-    command = stacky_file.commands.get('stop')
+    command = stacky_file.commands.get("stop")
     success, code = _call_command(command)
 
     if not success:
-        logging.error(f'command[stop]: {command} failed with code: {code}.')
+        logging.error(f"command[stop]: {command} failed with code: {code}.")
 
     return True
 
 
-def status(stacky_file: 'StackyFile') -> typing.Optional[bytes]:
-    if not stacky_file.commands or not stacky_file.commands.get('status'):
+def status(stacky_file: "StackyFile") -> typing.Optional[bytes]:
+    if not stacky_file.commands or not stacky_file.commands.get("status"):
         return None
 
-    command = stacky_file.commands.get('status')
+    command = stacky_file.commands.get("status")
     if command is None:
         return None
 
@@ -68,20 +68,20 @@ def run(stacky_file, command_name) -> typing.Optional[bool]:
     success, code = _call_command(command)
 
     if not success:
-        logger.error(f'command[run]: {command} failed with code: {code}.')
+        logger.error(f"command[run]: {command} failed with code: {code}.")
         return False
 
     return True
 
 
-def check_status_ok(stacky_file: 'StackyFile') -> bool:
-    return b'ok' in status(stacky_file)
+def check_status_ok(stacky_file: "StackyFile") -> bool:
+    return b"ok" in status(stacky_file)
 
 
-def poll_check_status_ok(stacky_file: 'StackyFile', timeout=30) -> bool:
+def poll_check_status_ok(stacky_file: "StackyFile", timeout=30) -> bool:
     attempts = 0
     while attempts < timeout:
-        logger.debug(f'polling status | {stacky_file.name}\t {attempts}/{timeout}')
+        logger.debug(f"polling status | {stacky_file.name}\t {attempts}/{timeout}")
         if check_status_ok(stacky_file):
             return True
 
@@ -92,14 +92,14 @@ def poll_check_status_ok(stacky_file: 'StackyFile', timeout=30) -> bool:
 
 
 def git_clone(dependency: str):
-    is_ssh = dependency.startswith('git@')
-    is_http = dependency.startswith('http') and dependency.endswith('.git')
+    is_ssh = dependency.startswith("git@")
+    is_http = dependency.startswith("http") and dependency.endswith(".git")
 
     if not (is_ssh or is_http):
-        raise ValueError(f'git[clone]: only supports ssh or http and not {dependency}.')
+        raise ValueError(f"git[clone]: only supports ssh or http and not {dependency}.")
 
-    command = f'git clone {dependency}'
+    command = f"git clone {dependency}"
     success, code = _call_command(command)
 
     if not success:
-        logger.error(f'git[clone]: {command} failed with code: {code}.')
+        logger.error(f"git[clone]: {command} failed with code: {code}.")

@@ -2,21 +2,21 @@ import os
 
 from stacky import commands
 
-GIT = 'git'
-HTTP = 'http'
-DIR = 'dir'
+GIT = "git"
+HTTP = "http"
+DIR = "dir"
 
 
 def parse(dependency: str) -> (str, str):
-    if dependency.startswith('git@'):
+    if dependency.startswith("git@"):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return GIT, name
 
-    if dependency.startswith('http') and dependency.endswith('.git'):
+    if dependency.startswith("http") and dependency.endswith(".git"):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return GIT, name
 
-    if dependency.startswith('http'):
+    if dependency.startswith("http"):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return HTTP, name
 
@@ -24,7 +24,7 @@ def parse(dependency: str) -> (str, str):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return DIR, name
 
-    raise ValueError(f'Could not parse dependency: {dependency}')
+    raise ValueError(f"Could not parse dependency: {dependency}")
 
 
 def retrieve(dependency: str) -> str:

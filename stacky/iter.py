@@ -11,7 +11,11 @@ class StackyAccumulator:
         self.stacky_files = []
 
 
-def iterate(stacky_acc: 'StackyAccumulator', stacky_file: 'config.StackyFile', extra: List[str] = None):
+def iterate(
+    stacky_acc: "StackyAccumulator",
+    stacky_file: "config.StackyFile",
+    extra: List[str] = None,
+):
     os.chdir(stacky_acc.parent_dir)
 
     for item in stacky_file.stack:
@@ -24,7 +28,9 @@ def iterate(stacky_acc: 'StackyAccumulator', stacky_file: 'config.StackyFile', e
     if extra:
         for key in extra:
             if key not in stacky_file.extra:
-                raise ValueError(f'extra: {key} does not exist in: {stacky_file.file_path}')
+                raise ValueError(
+                    f"extra: {key} does not exist in: {stacky_file.file_path}"
+                )
 
             for item in stacky_file.extra[key]:
                 path = dependency.retrieve(item)
@@ -34,7 +40,9 @@ def iterate(stacky_acc: 'StackyAccumulator', stacky_file: 'config.StackyFile', e
                     iterate(stacky_acc, stacky_file_child)
 
 
-def accumulate(parent_dir: str, stacky_file: 'config.StackyFile', extra: List[str] = None) -> List['config.StackyFile']:
+def accumulate(
+    parent_dir: str, stacky_file: "config.StackyFile", extra: List[str] = None
+) -> List["config.StackyFile"]:
     stacky_acc = StackyAccumulator(parent_dir)
     iterate(stacky_acc, stacky_file, extra)
     return stacky_acc.stacky_files
