@@ -1,19 +1,19 @@
+from typing import Tuple, Optional
 import subprocess
 import time
 import logging
-import typing
 
 from stacky.config import StackyFile
 
 logger = logging.getLogger()
 
 
-def _call_command(command: str) -> (bool, int):
+def _call_command(command: str) -> Tuple[bool, int]:
     code = subprocess.call(command, shell=True)
     return code == 0, code
 
 
-def _check_output_command(command: str) -> (bool, int, bytes):
+def _check_output_command(command: str) -> Tuple[bool, int, Optional[bytes]]:
     try:
         output = subprocess.check_output(command, shell=True)
         return True, 0, output
@@ -47,7 +47,7 @@ def stop(stacky_file: StackyFile) -> bool:
     return True
 
 
-def status(stacky_file: StackyFile) -> typing.Optional[bytes]:
+def status(stacky_file: StackyFile) -> Optional[bytes]:
     if not stacky_file.commands or not stacky_file.commands.get("status"):
         return None
 
@@ -60,7 +60,7 @@ def status(stacky_file: StackyFile) -> typing.Optional[bytes]:
     return output
 
 
-def run(stacky_file: StackyFile, command_name: str) -> typing.Optional[bool]:
+def run(stacky_file: StackyFile, command_name: str) -> Optional[bool]:
     if not stacky_file.commands or not stacky_file.commands.get(command_name):
         return None
 
@@ -75,7 +75,8 @@ def run(stacky_file: StackyFile, command_name: str) -> typing.Optional[bool]:
 
 
 def check_status_ok(stacky_file: StackyFile) -> bool:
-    return b"ok" in status(stacky_file)
+    stat = status(stacky_file)
+    return stat is not None and b"ok" in stat
 
 
 def poll_check_status_ok(stacky_file: StackyFile, timeout=30) -> bool:
