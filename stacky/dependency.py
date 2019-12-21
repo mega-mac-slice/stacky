@@ -1,3 +1,4 @@
+from typing import Tuple
 import os
 
 from stacky import commands
@@ -7,7 +8,7 @@ HTTP = "http"
 DIR = "dir"
 
 
-def parse(dependency: str) -> (str, str):
+def parse(dependency: str) -> Tuple[str, str]:
     if dependency.startswith("git@"):
         name, _ = os.path.splitext(os.path.basename(dependency))
         return GIT, name

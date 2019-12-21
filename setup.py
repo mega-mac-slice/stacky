@@ -18,6 +18,6 @@ setup(
     tests_require=["mock"],
     test_suite="tests",
     extras_require={
-        "dev": ["pycodestyle", "tox", "bumpversion", "mock", "twine", "black"]
+        "dev": ["pycodestyle", "tox", "bumpversion", "mock", "twine", "black", "mypy"]
     },
 )

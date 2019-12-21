@@ -3,15 +3,18 @@ APP_NAME=$(shell ./setup.py --name)
 APP_VERSION=$(shell ./setup.py --version)
 
 install:
-	@pipenv install --three --pre -e .[dev]
+	@pipenv install --three --pre -e .[dev] --skip-lock
 
 format:
 	@pipenv run black setup.py stacky tests it
 
+typecheck:
+	@pipenv run mypy stacky
+
 lint:
 	@pipenv run pycodestyle stacky tests setup.py
 
-test: lint
+test: typecheck lint
 	@pipenv run tox
 
 it: install
